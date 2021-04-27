@@ -3,17 +3,18 @@ from collections import defaultdict
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+
 data_frame = pd.read_csv("StarWars.csv",encoding = "ISO-8859-1")
 
 data = {}
 
 data2 = defaultdict(list)
-data2["episode"].append("I")
-data2["episode"].append("II")
-data2["episode"].append("III")
-data2["episode"].append("IV")
-data2["episode"].append("V")
-data2["episode"].append("VI")
+data2["Episode"].append("I")
+data2["Episode"].append("II")
+data2["Episode"].append("III")
+data2["Episode"].append("IV")
+data2["Episode"].append("V")
+data2["Episode"].append("VI")
 
 
 
@@ -52,19 +53,19 @@ def sumup(x):
     result = (allin * 100) / 1187
     return int(result)
 
-episode_I = data2["result"].append(sumup(I))
-episode_II = data2["result"].append(sumup(II)) 
-episode_III = data2["result"].append(sumup(III))
-episode_IV = data2["result"].append(sumup(IV)) 
-episode_V = data2["result"].append(sumup(V))
-episode_VI = data2["result"].append(sumup(VI))
+episode_I = data2["percentage"].append(sumup(I))
+episode_II = data2["percentage"].append(sumup(II)) 
+episode_III = data2["percentage"].append(sumup(III))
+episode_IV = data2["percentage"].append(sumup(IV)) 
+episode_V = data2["percentage"].append(sumup(V))
+episode_VI = data2["percentage"].append(sumup(VI))
 
 
-df = pd.DataFrame(data2, columns = ["episode", "result"])
+df = pd.DataFrame(data2, columns = ["Episode", "percentage"])
 
 
-sns.set()
 
-sns.lineplot(data=df, x="episode", y="result")
+lineplot = sns.lineplot(data=df, x="Episode", y="percentage")
+get_image =lineplot.get_figure()
+get_image.savefig("./image/population.png")
 
-plt.show()
