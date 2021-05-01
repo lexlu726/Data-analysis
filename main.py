@@ -67,5 +67,5 @@ df = pd.DataFrame(data2, columns = ["Episode", "percentage"])
 
 lineplot = sns.lineplot(data=df, x="Episode", y="percentage")
 get_image =lineplot.get_figure()
-get_image.savefig("./image/population.png")
+get_image.savefig("./image/population.jpg")
 
