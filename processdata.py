@@ -30,6 +30,9 @@ class datacollector:
             if len(tem) <= len(pointer):
                 tem.append(item)
         tem = self.countit(tem)
+        print(tem)
+        for k in tem:
+            print(tem[k])
         self.info.update({self.title[target]:tem})
 
 
@@ -61,9 +64,13 @@ class datacollector:
             if result[r] <5 and r != "Response" and len(r)< 8 :
                 result["skip"] += 1
                 d.append(r)
-        
+
         for item in d:
+            print(item)
             result.pop(item)
+        for t in result:
+            result[t] = float((result[t] * 100) / 1186)
+
         return result 
 
     def printout(self):
@@ -71,13 +78,13 @@ class datacollector:
             print(title,":",end ="")
             print(item)
             print("")
-        return     
-
+        return   
+    
 
 
 
 test = datacollector()
 test.collecttitle(data_frame)
-test.mudata(1, 30)
+test.mudata(1, 4)
 print(test.printout())
 
