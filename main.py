@@ -2,70 +2,42 @@ import pandas as pd
 from collections import defaultdict
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+from processdata import datacollector
 
 data_frame = pd.read_csv("StarWars.csv",encoding = "ISO-8859-1")
 
-data = {}
 
-data2 = defaultdict(list)
-data2["Episode"].append("I")
-data2["Episode"].append("II")
-data2["Episode"].append("III")
-data2["Episode"].append("IV")
-data2["Episode"].append("V")
-data2["Episode"].append("VI")
-
-
-
-seen = pd.DataFrame(data_frame, columns = ["Which of the following Star Wars films have you seen? Please select all that apply.","Unnamed: 4", "Unnamed: 5","Unnamed: 6","Unnamed: 7","Unnamed: 8"])
-e1 = seen["Which of the following Star Wars films have you seen? Please select all that apply."]
-e2 = seen["Unnamed: 4"]
-e3 = seen["Unnamed: 5"]
-e4 = seen["Unnamed: 6"]
-e5 = seen["Unnamed: 7"]
-e6 = seen["Unnamed: 8"]
-test = seen[["Which of the following Star Wars films have you seen? Please select all that apply.","Unnamed: 4"]]
-
-
-def convertit(x):
-    if type(x) == str:
-        return 1
-    else:
-        return 0
-
-I = e1.apply(convertit)
-II = e2.apply(convertit)
-III = e3.apply(convertit)
-IV = e4.apply(convertit)
-V = e5.apply(convertit)
-VI = e6.apply(convertit)
-
-
-def sumup(x):
-    listr = []
-    l = 0
-    for s in x:
-        listr.append(s)
-    r = tuple(listr)
-    allin = sum(r)
+def firgurecreat(data):
+    # Pie chart, where the slices will be ordered and plotted counter-clockwise:
+    labels = []
+    sizes = []
+    time = []
+     # only "explode" the 2nd slice (i.e. 'Hogs')
     
-    result = (allin * 100) / 1187
-    return int(result)
-
-episode_I = data2["percentage"].append(sumup(I))
-episode_II = data2["percentage"].append(sumup(II)) 
-episode_III = data2["percentage"].append(sumup(III))
-episode_IV = data2["percentage"].append(sumup(IV)) 
-episode_V = data2["percentage"].append(sumup(V))
-episode_VI = data2["percentage"].append(sumup(VI))
-
-
-df = pd.DataFrame(data2, columns = ["Episode", "percentage"])
+    for item in data:
+        if data[item]> 1:
+            labels.append(item)
+            sizes.append(data[item])
+            time.append(0)
+    print(labels, sizes,time)
+    explode = tuple(time)
 
 
 
-lineplot = sns.lineplot(data=df, x="Episode", y="percentage")
-get_image =lineplot.get_figure()
-get_image.savefig("./image/population.jpg")
+    fig1, ax1 = plt.subplots()
+    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',shadow=True, startangle=90)
+    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    return plt.savefig(f"{test.title[10]}.jpg")
 
+
+
+# firgurecreat({'Response': 0.08431703204047218, 'Yes': 78.83642495784149, 'No': 21.079258010118043})
+
+if __name__ == '__main__':
+    pass
+    test = datacollector()
+    test.collecttitle(data_frame)
+    test.collectinfo(10)
+    print(test.info)
+    firgurecreat(test.info)
+    
