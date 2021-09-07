@@ -15,6 +15,7 @@ class datacollector:
         self.title = []# it contains title which unname been fix
         self.info = None# it contains each question(title)'s result by percentage'
         self.unchange = []
+        self.pointer = None
     
     #collecting the title into dict and follow with number. assuming first row as title.
     def collecttitle(self, data):
@@ -48,6 +49,7 @@ class datacollector:
 
         tem = self.countit(tem)
         self.info = tem
+        self.pointer = self.title[target]
 
 
         return self.info
