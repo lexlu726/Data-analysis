@@ -2,7 +2,7 @@ import pandas as pd
 from collections import defaultdict
 import seaborn as sns
 
-data_frame = pd.read_csv("C:/Users/Asus/OneDrive/Desktop/program/Data-Analysis/Data-analysis/StarWars.csv ",encoding = "ISO-8859-1")
+# data_frame = pd.read_csv("./test./StarWars.csv ",encoding = "ISO-8859-1")
 
 # class Node:
 #     def __init__(self, data = None ):
@@ -38,10 +38,10 @@ class datacollector:
         return self.title
 
         #a function to breakdown data by title and count each subject's votes had
-    def collectinfo(self,target):
+    def collectinfo(self,target, data):
         tem = []
         #create pointer that 
-        pointer = pd.DataFrame(data_frame, columns = [self.unchange[target]])
+        pointer = pd.DataFrame(data, columns = [self.unchange[target]])
         for item in pointer[self.unchange[target]]:
 
             if len(tem) <= len(pointer):
