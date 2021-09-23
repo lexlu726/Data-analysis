@@ -15,6 +15,7 @@ class questionuser:
     def __init__(self):
         self.fname = None
         self.csv = None
+        self.infopointer = None
 
     def selectfile(self):
         fn = []
@@ -24,27 +25,31 @@ class questionuser:
             for item in onlyfiles:
                 # print("i am at for loop ")
                 tem = item.split(".csv")
-                fn.append(tem[0])
-                if self.fname == tem[0]:
-                    self.csv = pd.read_csv(f"./test-subject/{self.fname}.csv",encoding = "ISO-8859-1")
-                    break
-                
-
+                if tem[0] not in fn:
+                    fn.append(tem[0])
+                    continue
             if self.fname in fn:
-                print("True")
+                self.csv = pd.read_csv(f"./test-subject/{self.fname}.csv",encoding = "ISO-8859-1")
                 break
             else:
                 print(f"there has no file name call : {self.fname}")
-                print(f"the CSV file in the folder is : {fn}")
-
-                    
+                print(f"the CSV file in the folder is : {fn}")      
         return self.csv
 
+    def selectinfo(self):
+        test = datacollector()
+        test.collecttitle(self.csv)
+        test.collectinfo(3, self.csv)
+        print(test.info)
+        return firgurecreat(test.info, test.pointer)
 
 
 
 aq = questionuser()
-print(aq.selectfile())
+aq.selectfile()
+aq.selectinfo()
+
+
 
 # f = input("please enter the file you want to analysis: ")
 # try:
@@ -78,4 +83,3 @@ print(aq.selectfile())
 #     test.collectinfo(q, data_frame)
 #     print(test.info)
 #     firgurecreat(test.info, test.pointer)
-    

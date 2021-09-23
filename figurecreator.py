@@ -15,13 +15,12 @@ def firgurecreat(data, question):
             time.append(0)
     print(labels, sizes,time)
     explode = tuple(time)
-
-
-
     fig1, ax1 = plt.subplots()
     ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',shadow=True, startangle=90)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-    return plt.savefig(f"./image/{question}.jpg")
+    print(f"the fig question is {question}")
+    fgname = input("please input the figname: ")
+    return plt.savefig(f"./image/{fgname}.jpg")
 
 
 
