@@ -17,20 +17,27 @@ class questionuser:
         self.csv = None
 
     def selectfile(self):
-    
+        fn = []
         while len(onlyfiles)>=1:
             self.fname = input("please enter the file you want to analysis: ")
-            print("i am at 1st floor")
+            # print("i am at 1st floor")
             for item in onlyfiles:
-                print("i am at for loop ")
-                print(item)
+                # print("i am at for loop ")
                 tem = item.split(".csv")
+                fn.append(tem[0])
                 if self.fname == tem[0]:
                     self.csv = pd.read_csv(f"./test-subject/{self.fname}.csv",encoding = "ISO-8859-1")
                     break
-                else:
-                    print(f"there has no file call {self.fname}.csv ")
-                    continue
+                
+
+            if self.fname in fn:
+                print("True")
+                break
+            else:
+                print(f"there has no file name call : {self.fname}")
+                print(f"the CSV file in the folder is : {fn}")
+
+                    
         return self.csv
 
 
@@ -63,7 +70,7 @@ print(aq.selectfile())
 # print(filenames)
 
 
-print(len(onlyfiles))
+
 
 # if __name__ == '__main__':
 #     test = datacollector()
