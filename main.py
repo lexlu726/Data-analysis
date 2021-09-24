@@ -20,7 +20,7 @@ class questionuser:
     def selectfile(self):
         fn = []
         while len(onlyfiles)>=1:
-            self.fname = input("please enter the file you want to analysis: ")
+            self.fname = input("please enter the file's name in image folder: ")
             # print("i am at 1st floor")
             for item in onlyfiles:
                 # print("i am at for loop ")
@@ -39,9 +39,24 @@ class questionuser:
     def selectinfo(self):
         test = datacollector()
         test.collecttitle(self.csv)
-        test.collectinfo(3, self.csv)
-        print(test.info)
-        return firgurecreat(test.info, test.pointer)
+        while test:
+            qnumber = input("please enter number which question you want: ")
+            try:
+                test.collectinfo(int(qnumber), self.csv)
+            except ValueError:
+                print("please enter the interger.")
+            except IndexError:
+                print("the number is out of range.")
+            # except TypeError:
+            #     print("the input are None sense. ")
+                
+            finally:
+                break
+
+        try:
+            return firgurecreat(test.info, test.pointer)
+        except TypeError:
+            self.selectinfo()
 
 
 
