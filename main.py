@@ -1,6 +1,4 @@
 import pandas as pd
-import sys
-from collections import defaultdict
 import matplotlib.pyplot as plt
 from processdata import datacollector
 from figurecreator import firgurecreat
@@ -46,10 +44,7 @@ class questionuser:
             except ValueError:
                 print("please enter the interger.")
             except IndexError:
-                print("the number is out of range.")
-            # except TypeError:
-            #     print("the input are None sense. ")
-                
+                print("the number is out of range.")      
             finally:
                 break
 
@@ -59,42 +54,8 @@ class questionuser:
             self.selectinfo()
 
 
+if __name__ == '__main__':
+    aq = questionuser()
+    aq.selectfile()
+    aq.selectinfo()
 
-aq = questionuser()
-aq.selectfile()
-aq.selectinfo()
-
-
-
-# f = input("please enter the file you want to analysis: ")
-# try:
-#      data_frame = pd.read_csv(f"./test-subject/{f}.csv",encoding = "ISO-8859-1")
-        
-# except :
-#     print("the file name can not be found ")
-
-# try:
-#     q = int(input("please enter number that question you want to analysis: "))
-# except:
-#     print("enter number")
-
-# try:
-#     q = questionuser()
-# except FileNotFoundError:
-#     print("there has no such file")
-
-# from os import walk
-
-# filenames = next(walk("./test-subject"), (None, None, []))[2]  # [] if no file
-
-# print(filenames)
-
-
-
-
-# if __name__ == '__main__':
-#     test = datacollector()
-#     test.collecttitle(data_frame)
-#     test.collectinfo(q, data_frame)
-#     print(test.info)
-#     firgurecreat(test.info, test.pointer)
