@@ -2,12 +2,6 @@ import pandas as pd
 from collections import defaultdict
 import seaborn as sns
 
-# data_frame = pd.read_csv("./test./StarWars.csv ",encoding = "ISO-8859-1")
-
-# class Node:
-#     def __init__(self, data = None ):
-#         self.data = data
-#         self.nextval = None
 
 class datacollector:
      
@@ -37,7 +31,7 @@ class datacollector:
             
         return self.title
 
-        #a function to breakdown data by title and count each subject's votes had
+    #a function to breakdown data by title and count each subject's votes had
     def collectinfo(self,target, data):
         tem = []
         #create pointer that 
